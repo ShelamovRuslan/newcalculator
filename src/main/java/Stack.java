@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public class StackCalculator {
+public class Stack {
     private final ArrayList<String> stack = new ArrayList<>();
 
     public void push(String element) {
@@ -16,11 +15,8 @@ public class StackCalculator {
         return stack.get(0);
     }
 
-    public boolean empty() {
+    public boolean isEmpty() {
         return stack.isEmpty();
     }
 
-    public int search(String element) {
-        return stack.indexOf(element);
-    }
 }

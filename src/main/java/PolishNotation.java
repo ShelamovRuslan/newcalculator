@@ -2,18 +2,18 @@ import java.util.ArrayList;
 
 import static java.lang.Character.isDigit;
 
-public class Distributor {
+public class PolishNotation {
 
-   private int counter;
-   private ArrayList<String> inverseNotation;
-   private Stack stack;
+   private final ArrayList<String> inverseNotation;
+   private final Stack stack;
 
-
-    public Distributor(ArrayList<String> elements) {
-        this.counter = 0;
+    public ArrayList<String> getInverseNotation() {
+        return inverseNotation;
+    }
+    public PolishNotation(ArrayList<String> elementsExpression) {
         this.inverseNotation = new ArrayList<>();
         this.stack = new Stack();
-        for (String element : elements) {
+        for (String element : elementsExpression) {
             if (element.equals("(")) {
                 stack.push(element);
             } else if (element.equals(")")) {
@@ -24,14 +24,24 @@ public class Distributor {
                     stack.pop();
                 }
             } else if (element.equals("+") || element.equals("-")) {
+                if (!stack.isEmpty()) {
+                    while (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("+") || stack.peek().equals("-")) {
+                        inverseNotation.add(stack.pop());
+                        if (stack.isEmpty()){
+                            break;
+                        }
+                    }
+                }
                 stack.push(element);
             } else if (element.equals("*") || element.equals("/")) {
                 if (stack.peek().equals("+") || stack.peek().equals("-")) {
                     stack.push(element);
                 } else if (stack.peek().equals("*") || stack.peek().equals("/")) {
-                    while (stack.peek().equals("*") || stack.peek().equals("/")){
-                        inverseNotation.add(stack.pop());
-                    }
+
+                        while (stack.peek().equals("*") || stack.peek().equals("/")) {
+                            inverseNotation.add(stack.pop());
+                        }
+
                     stack.push(element);
                 } else if (stack.peek().equals("(")) {
                     stack.push(element);
