@@ -29,12 +29,12 @@ public class PolishNotation {
         }
    }
 
-   public void bracketOpen (String element) {
+   private void bracketOpen (String element) {
        if (element.equals("(")) {
            stack.push(element);
        }
    }
-    public void bracketClose (String element) {
+    private void bracketClose (String element) {
         if (element.equals(")")) {
             while (!stack.peek().equals("(")) {
                 inverseNotation.add(stack.pop());
@@ -44,7 +44,7 @@ public class PolishNotation {
             }
         }
     }
-    public void plus (String element) {
+    private void plus (String element) {
         if (element.equals("+") || element.equals("-")) {
             if (!stack.isEmpty()) {
                 while (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("+") || stack.peek().equals("-")) {
@@ -57,7 +57,7 @@ public class PolishNotation {
             stack.push(element);
         }
     }
-    public void multiplication (String element) {
+    private void multiplication (String element) {
         if (element.equals("*") || element.equals("/")) {
             if (stack.peek().equals("+") || stack.peek().equals("-")) {
                 stack.push(element);

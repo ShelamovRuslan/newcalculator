@@ -22,26 +22,25 @@ public class Calculator {
 
     private void calc() {
        for (String element: this.inverseNotation){
-            switch (element) {
-                case "*":
+           switch (element) {
+               case "*" -> {
                    popNumbersFromStack();
                    this.stack.push(String.valueOf(this.firstNumber * this.secondNumber));
-                   break;
-                case "/":
-                    popNumbersFromStack();
-                    this.stack.push(String.valueOf(this.secondNumber / this.firstNumber));
-                    break;
-                case "+":
-                    popNumbersFromStack();
-                    this.stack.push(String.valueOf(this.firstNumber + this.secondNumber));
-                    break;
-                case "-":
-                    popNumbersFromStack();
-                    this.stack.push(String.valueOf(this.secondNumber - this.firstNumber));
-                    break;
-                default:
-                    this.stack.push(element);
-            }
+               }
+               case "/" -> {
+                   popNumbersFromStack();
+                   this.stack.push(String.valueOf(this.secondNumber / this.firstNumber));
+               }
+               case "+" -> {
+                   popNumbersFromStack();
+                   this.stack.push(String.valueOf(this.firstNumber + this.secondNumber));
+               }
+               case "-" -> {
+                   popNumbersFromStack();
+                   this.stack.push(String.valueOf(this.secondNumber - this.firstNumber));
+               }
+               default -> this.stack.push(element);
+           }
        }
        this.result = Double.parseDouble(this.stack.pop());
    }
