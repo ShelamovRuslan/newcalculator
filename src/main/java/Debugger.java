@@ -174,7 +174,7 @@ public class Debugger {
     }
 
     private static ArrayList<String> arrayExpression(@NotNull String expression) {
-        ArrayList<String> list = new ArrayList(expression.length());
+        ArrayList<String> list = new ArrayList<>(expression.length());
         list.addAll(Arrays.asList(expression.split(" ")));
         return list;
     }
