@@ -17,7 +17,7 @@ public class PolishNotation {
         for (String element : elementsExpression) {
             switch (element) {
                 case "(" -> bracketOpen(element);
-                case ")" ->  bracketClose(element);
+                case ")" ->  bracketClose();
                 case "+", "-" ->  plus (element);
                 case "*", "/" -> multiplication(element);
                 default -> inverseNotation.add(element);
@@ -30,22 +30,17 @@ public class PolishNotation {
    }
 
    private void bracketOpen (String element) {
-       if (element.equals("(")) {
            stack.push(element);
-       }
    }
-    private void bracketClose (String element) {
-        if (element.equals(")")) {
+    private void bracketClose () {
             while (!stack.peek().equals("(")) {
                 inverseNotation.add(stack.pop());
             }
             if (stack.peek().equals("(")) {
                 stack.pop();
             }
-        }
     }
     private void plus (String element) {
-        if (element.equals("+") || element.equals("-")) {
             if (!stack.isEmpty()) {
                 while (stack.peek().equals("*") || stack.peek().equals("/") || stack.peek().equals("+") || stack.peek().equals("-")) {
                     inverseNotation.add(stack.pop());
@@ -55,27 +50,18 @@ public class PolishNotation {
                 }
             }
             stack.push(element);
-        }
     }
     private void multiplication (String element) {
-        if (element.equals("*") || element.equals("/")) {
             if (stack.peek().equals("+") || stack.peek().equals("-")) {
                 stack.push(element);
             } else if (stack.peek().equals("*") || stack.peek().equals("/")) {
-
                 while (stack.peek().equals("*") || stack.peek().equals("/")) {
                     inverseNotation.add(stack.pop());
                 }
-
                 stack.push(element);
             } else if (stack.peek().equals("(")) {
                 stack.push(element);
             }
-        }
     }
-
-
-
-
 }
 

@@ -109,9 +109,6 @@ public class Debugger {
         }
 
         expression = expression.replace("-0", "0");
-        expression = expression.replace("-0", "0");
-        expression = expression.replace("-0", "0");
-        expression = expression.replace("-0", "0");
 
         return expression;
     }
